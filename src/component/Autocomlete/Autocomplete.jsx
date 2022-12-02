@@ -77,7 +77,7 @@ function Autocomlete({ isLoaded }) {
         value={value}
         onChange={handleInput}
         disabled={!ready}
-        placeholder="Where are you going?"
+        placeholder="Введіть адрессу"
       />
       {status === "OK" && (
         <ul className={s.suggestion}>{renderSuggestions()}</ul>

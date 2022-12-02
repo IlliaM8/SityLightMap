@@ -44,6 +44,7 @@ function Map() {
         onLoad={onLoad}
         onUnmount={onUnmount}
         options={defaultOptions}
+        language="uk"
       ></GoogleMap>
     </div>
   );

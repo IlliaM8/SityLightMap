@@ -1,7 +1,32 @@
 .root {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  flex: 0 1 300px;
+  padding: 0 10px 0 10px;
+  z-index: 1000;
 }
 .input {
-  width: 300px;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 .suggestion {
+  background-color: white;
+  list-style-type: none;
+  border-radius: 5px;
+}
+.listItem {
+  border: 1px solid black;
+  padding: 3px;
+}
+.listItem:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.listItem:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
