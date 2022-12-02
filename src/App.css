@@ -16,3 +16,24 @@
   width: 100vw;
   position: absolute;
 }
+.button {
+  max-height: 32px;
+  margin-left: 10px;
+  background-color: white;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  z-index: 2;
+}
+.button:hover {
+  border: 1px solid black;
+}
+@media (max-width: 450px) {
+  .addressSearchContainer {
+    position: absolute;
+  }
+  .button {
+    position: absolute;
+    top: 45px;
+  }
+}

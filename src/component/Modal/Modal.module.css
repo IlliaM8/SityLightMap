@@ -1,0 +1,20 @@
+.modal__conatainer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.296);
+  z-index: 1000;
+  display: none;
+}
+.modal__conatainer.active {
+  display: flex;
+}
+.modal__content {
+  width: 300px;
+  height: 300px;
+  background-color: rgb(243, 244, 239);
+  border-radius: 10px;
+  border: 2px rgb(125, 120, 120) solid;
+}
