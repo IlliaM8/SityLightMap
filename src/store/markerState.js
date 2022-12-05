@@ -16,6 +16,5 @@ class MarkerState {
   addMarker(value) {
     this.marker.push(value);
   }
-  removeMarker(value) {}
 }
 export default new MarkerState();
