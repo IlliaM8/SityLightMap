@@ -1,7 +1,9 @@
-import { GoogleMap } from "@react-google-maps/api";
+import { GoogleMap, Marker } from "@react-google-maps/api";
 import React, { useRef } from "react";
+import MyMarker from "../MyMarker/MyMarker";
 import s from "./Map.module.css";
 import { defaultTheme } from "./Theme";
+
 const containerStyle = {
   width: "100%",
   height: "100%",
@@ -24,7 +26,7 @@ const defaultOptions = {
   fullscreenControl: false,
   styles: defaultTheme,
 };
-function Map() {
+function Map({ coords }) {
   const mapRef = useRef(undefined);
 
   const onLoad = React.useCallback(function callback(map) {
@@ -34,7 +36,6 @@ function Map() {
   const onUnmount = React.useCallback(function callback(map) {
     mapRef.current = undefined;
   }, []);
-
   return (
     <div className={s.container}>
       <GoogleMap
@@ -45,7 +46,9 @@ function Map() {
         onUnmount={onUnmount}
         options={defaultOptions}
         language="uk"
-      ></GoogleMap>
+      >
+        <MyMarker coords={coords} />
+      </GoogleMap>
     </div>
   );
 }

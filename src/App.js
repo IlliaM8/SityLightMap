@@ -2,29 +2,32 @@ import "./App.css";
 import Loader from "./component/Loader/Loader";
 import { useJsApiLoader } from "@react-google-maps/api";
 import Map from "./component/Map/Map";
-import Autocomlete from "./component/Autocomlete/Autocomplete";
 import { useState } from "react";
+import SitiesSelect from "./component/SitiesSelect/SitiesSelect";
+import Form from "./component/Form/Form";
 import Modal from "./component/Modal/Modal";
+import modalState from "./store/modalState";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ["places"];
 
 function App() {
-  const [visible, setVisible] = useState(false);
-
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
     libraries,
   });
+
   return (
     <div className="App">
       <div className="addressSearchContainer">
-        <Autocomlete isLoaded={isLoaded} />
-        <button className="button" onClick={() => setVisible(true)}>
-          Додати мітку
+        <SitiesSelect />
+        <button className="button" onClick={() => modalState.openModal(true)}>
+          Натисніть щоб додати мітку
         </button>
+        <Modal>
+          <Form isLoaded={isLoaded} />
+        </Modal>
       </div>
-      <Modal visible={visible} setVisible={setVisible} />
       {isLoaded ? <Map /> : <Loader></Loader>}
     </div>
   );

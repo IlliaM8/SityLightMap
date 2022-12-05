@@ -1,16 +1,17 @@
 .root {
+  z-index: 1000;
+}
+.form {
+  width: 250px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
-
-  flex: 0 1 300px;
-  padding: 0 10px 0 10px;
-  z-index: 1000;
+  gap: 10px;
 }
 .input {
   width: 100%;
-  padding: 6px;
-  border: 1px solid gray;
+  padding: 6px 6px 6px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.295);
   border-radius: 5px;
 }
 .suggestion {
@@ -19,7 +20,7 @@
   border-radius: 5px;
 }
 .listItem {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 0, 0, 0.295);
   padding: 3px;
 }
 .listItem:first-child {
@@ -29,4 +30,29 @@
 .listItem:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+.timeInput {
+  width: 100%;
+  padding: 6px 6px 6px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.295);
+  border-radius: 5px;
+}
+.main__text {
+  font-size: 14px;
+  font-weight: 600;
+}
+.secondary__text {
+  font-size: 14px;
+}
+.submitButton {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.cross {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  position: absolute;
+  right: 0;
 }
