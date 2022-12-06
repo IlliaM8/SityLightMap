@@ -95,9 +95,16 @@ h6 {
 .addressSearchContainer {
   display: flex;
   justify-content: center;
-  padding-top: 10px;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
   width: 100vw;
   position: absolute;
+  gap: 100px;
+}
+.addressSearchContainer__panel {
+  display: flex;
+  gap: 5px;
 }
 .button {
   max-height: 32px;
@@ -106,7 +113,21 @@ h6 {
   border: 1px solid rgb(100, 83, 83);
   border-radius: 5px;
   z-index: 2;
+  order: 2;
 }
 .button:hover {
   border: 1px solid rgb(0, 0, 0);
+}
+@media (max-width: 720px) {
+  .addressSearchContainer {
+    gap: 50px;
+    align-items: flex-start;
+  }
+  .addressSearchContainer__panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .button {
+    width: 200px;
+  }
 }

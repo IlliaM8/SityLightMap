@@ -10,5 +10,8 @@ class ModalState {
   closeModal() {
     this.state = false;
   }
+  toggleModal() {
+    this.state = !this.state;
+  }
 }
 export default new ModalState();

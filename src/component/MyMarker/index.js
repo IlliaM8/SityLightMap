@@ -1,11 +1,8 @@
 export default class Marker {
-  constructor(coord, description, time) {
-    this.coord = coord;
+  constructor(coords, description, time, id) {
+    this.coords = coords;
     this.description = description;
     this.time = time;
-    this.id = 0;
-  }
-  increaseId() {
-    this.id++;
+    this.id = id;
   }
 }

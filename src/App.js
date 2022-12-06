@@ -4,9 +4,9 @@ import { useJsApiLoader } from "@react-google-maps/api";
 import Map from "./component/Map/Map";
 import { useState } from "react";
 import SitiesSelect from "./component/SitiesSelect/SitiesSelect";
-import Form from "./component/Form/Form";
 import Modal from "./component/Modal/Modal";
 import modalState from "./store/modalState";
+import Autocomlete from "./component/Autocomlete/Autocomplete";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ["places"];
 
@@ -20,15 +20,19 @@ function App() {
   return (
     <div className="App">
       <div className="addressSearchContainer">
-        <SitiesSelect />
-        <button className="button" onClick={() => modalState.openModal(true)}>
-          Натисніть щоб додати мітку
-        </button>
+        <div className="addressSearchContainer__panel">
+          <SitiesSelect />
+          <button className="button" onClick={() => modalState.openModal()}>
+            Натисніть щоб додати мітку
+          </button>
+        </div>
         <Modal>
-          <Form isLoaded={isLoaded} />
+          <Autocomlete isLoaded={isLoaded} />
         </Modal>
       </div>
-      {isLoaded ? <Map /> : <Loader></Loader>}
+      <div onClick={() => modalState.closeModal()}>
+        {isLoaded ? <Map /> : <Loader></Loader>}
+      </div>
     </div>
   );
 }

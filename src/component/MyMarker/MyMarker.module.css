@@ -1,0 +1,22 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.delete {
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+}
+.delete:hover {
+  border-bottom: 2px solid black;
+}
+.trashCan {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+}

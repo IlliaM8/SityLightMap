@@ -8,7 +8,13 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import markerState from "../../store/markerState";
 import sityState from "../../store/sityState";
 import modalState from "../../store/modalState";
-function Autocomlete({ isLoaded }) {
+import Marker from "../MyMarker";
+import { observer } from "mobx-react-lite";
+
+const Autocomlete = observer(({ isLoaded }) => {
+  const [time, setTime] = useState("");
+  const [description, setDescr] = useState("");
+
   const {
     ready,
     value,
@@ -19,7 +25,10 @@ function Autocomlete({ isLoaded }) {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      /* Define search scope here */
+      types: ["address"],
+      componentRestrictions: {
+        country: "ua",
+      },
     },
     debounce: 300,
   });
@@ -34,10 +43,9 @@ function Autocomlete({ isLoaded }) {
     setValue(e.target.value);
   };
   const setSity = () => {
-    setValue(`${sityState.sity},вулиця `);
+    setValue(`${sityState.sity},`);
   };
-  useEffect(() => setSity(), []);
-  const [description, setDescr] = useState("awd");
+
   const handleSelect =
     ({ description }) =>
     () => {
@@ -45,25 +53,21 @@ function Autocomlete({ isLoaded }) {
       // by setting the second parameter to "false"
       setValue(description, false);
       clearSuggestions();
-      console.log(description);
       setDescr(description);
       // Get latitude and longitude via utility functions
     };
-  const [time, setTime] = useState("");
 
   function getInform(description) {
-    getGeocode({ address: description }).then((results) => {
-      const { lat, lng } = getLatLng(results[0]);
-      console.log("📍 Coordinates: ", { lat, lng });
-      markerState.addMarker({
-        coords: {
-          lat: lat,
-          lng: lng,
-        },
-        description: description,
-        time: time,
-      });
-    });
+    getGeocode({ address: description })
+      .then((results) => {
+        const { lat, lng } = getLatLng(results[0]);
+
+        markerState.incrId();
+        markerState.addMarker(
+          new Marker({ lat: lat, lng: lng }, description, time, markerState.id)
+        );
+      })
+      .catch();
   }
   const renderSuggestions = () =>
     data.map((suggestion) => {
@@ -78,8 +82,8 @@ function Autocomlete({ isLoaded }) {
           key={place_id}
           onClick={handleSelect(suggestion)}
         >
-          <span className={s.main__text}>{main_text}</span>
-          {/* <span className={s.main__text}>{secondary_text}</span> */}
+          <span className={s.main__text}>{main_text},</span>
+          {/* <span className={s.secondary__text}>{secondary_text}</span> */}
         </li>
       );
     });
@@ -89,13 +93,36 @@ function Autocomlete({ isLoaded }) {
     }
   }, [init, isLoaded]);
 
+  useEffect(() => {
+    if (!value.includes(sityState.sity)) {
+      setSity(sityState.sity);
+    }
+  }, [value]);
+
+  useEffect(() => {
+    setSity(sityState.sity);
+    setDescr("");
+  }, [modalState.state]);
+
   const getInformation = (e) => {
     e.preventDefault();
     getInform(description);
   };
+  const crossClass = [s.cross];
+  if (modalState.state) {
+    crossClass.push(s.active);
+  }
+  const toggleModal = () => {
+    modalState.toggleModal();
+  };
+
   return (
     <div className={s.root} ref={ref}>
-      <span onClick={() => modalState.closeModal()} className={s.cross}></span>
+      <div className={crossClass.join(" ")} onClick={toggleModal}>
+        <span className={s.cross__bar}></span>
+        <span className={s.cross__bar}></span>
+      </div>
+
       <form className={s.form} onSubmit={(e) => getInformation(e)} action="#">
         <label>Адресса</label>
         <input
@@ -127,6 +154,6 @@ function Autocomlete({ isLoaded }) {
       </form>
     </div>
   );
-}
+});
 
 export default Autocomlete;

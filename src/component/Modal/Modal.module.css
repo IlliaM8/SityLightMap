@@ -1,14 +1,17 @@
 .modal__conatainer {
-  position: absolute;
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  display: none;
+  scale: 0;
+  opacity: 0;
   top: 130px;
   left: 50px;
+  transition: all 0.5s ease-out;
 }
 .modal__conatainer.active {
   display: flex;
+  scale: 1;
+  opacity: 1;
 }
 .modal__content {
   display: flex;
@@ -16,7 +19,21 @@
   align-items: center;
   max-width: 300px;
   gap: 15px;
-  padding: 10px;
+  padding: 15px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
+}
+@media (max-width: 720px) {
+  .modal__conatainer {
+    scale: 1;
+    opacity: 1;
+    transform: translate(-100%);
+  }
+  .modal__conatainer.active {
+    transform: translate(-10px);
+  }
+  .modal__content {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
 }
