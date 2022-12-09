@@ -4,13 +4,15 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon app.js",
-    "dev": "node app.js"
+    "server": "nodemon app.js",
+    "client": "npm run start --prefix Front",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "config": "^3.3.8",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^6.8.0"
   },

@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import config from "config";
-import Marker from "./Marker.js";
+import cors from "cors";
 import router from "./MarkerRouter.js";
 const app = express();
 
@@ -10,7 +10,7 @@ const PORT = config.get("port") || 5000;
 mongoose.set("strictQuery", true);
 
 app.use(express.json());
-
+app.use(cors());
 app.use("/api", router);
 
 async function start() {

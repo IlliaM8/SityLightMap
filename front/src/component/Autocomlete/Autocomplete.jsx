@@ -10,6 +10,7 @@ import sityState from "../../store/sityState";
 import modalState from "../../store/modalState";
 import Marker from "../MyMarker";
 import { observer } from "mobx-react-lite";
+import axios from "../../axios";
 
 const Autocomlete = observer(({ isLoaded }) => {
   const [time, setTime] = useState("");
@@ -57,10 +58,18 @@ const Autocomlete = observer(({ isLoaded }) => {
       // Get latitude and longitude via utility functions
     };
 
+  const postMarker = async (coords, description, time) => {
+    const response = await axios.post("./api/markers", {
+      coords,
+      description,
+      time,
+    });
+  };
   function getInform(description) {
     getGeocode({ address: description })
       .then((results) => {
         const { lat, lng } = getLatLng(results[0]);
+        postMarker({ lat: lat, lng: lng }, description, time);
 
         markerState.incrId();
         markerState.addMarker(

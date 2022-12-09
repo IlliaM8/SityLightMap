@@ -6,6 +6,7 @@ class MarkerState {
   constructor() {
     makeAutoObservable(this);
   }
+
   addMarker(value) {
     let check = this.marker.find(
       (mark) => JSON.stringify(mark.coords) === JSON.stringify(value.coords)

@@ -7,7 +7,6 @@ const Marker = new mongoose.Schema({
   coords: Coords,
   description: { type: String, required: true },
   time: { type: String, require: true },
-  id: { type: Number, required: true },
 });
 
 export default mongoose.model("Marker", Marker);
