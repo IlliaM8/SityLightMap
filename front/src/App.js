@@ -7,7 +7,6 @@ import Modal from "./component/Modal/Modal";
 import modalState from "./store/modalState";
 import Autocomlete from "./component/Autocomlete/Autocomplete";
 import { getAllMarkers } from "./service";
-import { useCallback } from "react";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ["places"];
 
