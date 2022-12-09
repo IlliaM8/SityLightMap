@@ -20,7 +20,10 @@ class MarkerState {
     }
   }
   deleteMarker(id) {
-    this.marker = this.marker.filter((mark) => mark._id !== id);
+    this.marker = this.marker.filter((mark) => mark.id !== id);
+  }
+  incrId() {
+    this.id++;
   }
 }
 export default new MarkerState();
