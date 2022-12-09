@@ -1,12 +1,13 @@
 import { makeAutoObservable } from "mobx";
 class MarkerState {
-  id = 0;
   marker = [];
   copy = false;
   constructor() {
     makeAutoObservable(this);
   }
-
+  setMarkers(value) {
+    this.marker = [...value];
+  }
   addMarker(value) {
     let check = this.marker.find(
       (mark) => JSON.stringify(mark.coords) === JSON.stringify(value.coords)
@@ -19,10 +20,7 @@ class MarkerState {
     }
   }
   deleteMarker(id) {
-    this.marker = this.marker.filter((mark) => mark.id !== id);
-  }
-  incrId() {
-    this.id++;
+    this.marker = this.marker.filter((mark) => mark._id !== id);
   }
 }
 export default new MarkerState();

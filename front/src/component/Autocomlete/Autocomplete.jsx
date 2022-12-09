@@ -5,12 +5,10 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
-import markerState from "../../store/markerState";
 import sityState from "../../store/sityState";
 import modalState from "../../store/modalState";
-import Marker from "../MyMarker";
 import { observer } from "mobx-react-lite";
-import axios from "../../axios";
+import { getAllMarkers, postMarker } from "../../service";
 
 const Autocomlete = observer(({ isLoaded }) => {
   const [time, setTime] = useState("");
@@ -58,26 +56,14 @@ const Autocomlete = observer(({ isLoaded }) => {
       // Get latitude and longitude via utility functions
     };
 
-  const postMarker = async (coords, description, time) => {
-    const response = await axios.post("./api/markers", {
-      coords,
-      description,
-      time,
-    });
-  };
-  function getInform(description) {
+  const getInform = (description) => {
     getGeocode({ address: description })
       .then((results) => {
         const { lat, lng } = getLatLng(results[0]);
         postMarker({ lat: lat, lng: lng }, description, time);
-
-        markerState.incrId();
-        markerState.addMarker(
-          new Marker({ lat: lat, lng: lng }, description, time, markerState.id)
-        );
       })
       .catch();
-  }
+  };
   const renderSuggestions = () =>
     data.map((suggestion) => {
       const {
@@ -99,6 +85,7 @@ const Autocomlete = observer(({ isLoaded }) => {
   useEffect(() => {
     if (isLoaded) {
       init();
+      getAllMarkers();
     }
   }, [init, isLoaded]);
 

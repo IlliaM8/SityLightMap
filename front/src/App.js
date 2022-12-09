@@ -2,30 +2,21 @@ import "./App.css";
 import Loader from "./component/Loader/Loader";
 import { useJsApiLoader } from "@react-google-maps/api";
 import Map from "./component/Map/Map";
-import { useEffect, useState } from "react";
 import SitiesSelect from "./component/SitiesSelect/SitiesSelect";
 import Modal from "./component/Modal/Modal";
 import modalState from "./store/modalState";
 import Autocomlete from "./component/Autocomlete/Autocomplete";
-
-import axios from "./axios";
+import { getAllMarkers } from "./service";
+import { useCallback } from "react";
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ["places"];
 
 function App() {
-  useEffect(() => {
-    async function getAllMarkers() {
-      const response = await axios.get("/api/markers");
-      console.log(response.data);
-    }
-    getAllMarkers();
-  }, []);
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
     libraries,
   });
-
   return (
     <div className="App">
       <div className="addressSearchContainer">
