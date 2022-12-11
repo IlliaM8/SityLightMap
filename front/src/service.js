@@ -23,6 +23,7 @@ export async function postMarker(coords, description, time) {
       description,
       time,
     });
+    getAllMarkers();
   } catch (e) {
     console.log(e.message);
   }

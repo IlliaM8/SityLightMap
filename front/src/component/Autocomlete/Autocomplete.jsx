@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import s from "./Autocomplete.module.css";
 
@@ -11,16 +11,14 @@ import useOnclickOutside from "react-cool-onclickoutside";
 
 import sityState from "../../store/sityState";
 import modalState from "../../store/modalState";
-import markerState from "../../store/markerState";
 
 import { observer } from "mobx-react-lite";
 
 import { getAllMarkers, postMarker } from "../../service";
 
-import Marker from "../MyMarker";
-
 const Autocomlete = observer(({ isLoaded }) => {
   const [time, setTime] = useState("");
+
   const [description, setDescr] = useState("");
 
   const {
@@ -70,6 +68,7 @@ const Autocomlete = observer(({ isLoaded }) => {
       .then((results) => {
         const { lat, lng } = getLatLng(results[0]);
         postMarker({ lat: lat, lng: lng }, description, time);
+        getAllMarkers();
       })
       .catch();
   };
@@ -151,11 +150,7 @@ const Autocomlete = observer(({ isLoaded }) => {
           id="timeInput"
           placeholder="Час відключення"
         />
-        <input
-          className={s.submitButton}
-          onClick={() => modalState.closeModal()}
-          type="submit"
-        />
+        <input className={s.submitButton} onClick={toggleModal} type="submit" />
       </form>
     </div>
   );
