@@ -1,7 +1,5 @@
 .select {
-  border-radius: 5px;
-  border: 1px solid rgb(100, 83, 83);
-  padding: 3px;
+  width: 160px;
   z-index: 100;
   order: 2;
 }
