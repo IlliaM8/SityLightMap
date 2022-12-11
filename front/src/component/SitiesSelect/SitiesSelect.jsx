@@ -4,8 +4,9 @@ import { sities } from "./index";
 import s from "./SitiesSelect.module.css";
 
 import Select from "react-select";
+import { observer } from "mobx-react-lite";
 
-function SitiesSelect() {
+const SitiesSelect = observer(() => {
   const [isClearable, setIsClearable] = useState(false);
   const [isSearchable, setIsSearchable] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -22,17 +23,18 @@ function SitiesSelect() {
       label: "Одеса",
     },
   ];
-  const [sity, setSit] = useState("Чорноморськ");
   const getSity = () => {
-    return sity ? options.find((c) => c.value === sity) : "";
+    return sityState.sity
+      ? options.find((c) => c.value === sityState.sity)
+      : "";
   };
   const setSity = (newValue) => {
-    return setSit(newValue.value);
+    return sityState.setSity(newValue.value);
   };
   return (
     <div className={s.select}>
       <Select
-        onChange={(newValue) => setSity(newValue)}
+        onChange={setSity}
         options={options}
         value={getSity()}
         defaultValue={options[0]}
@@ -44,6 +46,6 @@ function SitiesSelect() {
       />
     </div>
   );
-}
+});
 
 export default SitiesSelect;
