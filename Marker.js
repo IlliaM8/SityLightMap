@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+const ObjectId = mongoose.Types.ObjectId;
+
 const Coords = new mongoose.Schema({
   lat: { type: Number, required: true },
   lng: { type: Number, required: true },

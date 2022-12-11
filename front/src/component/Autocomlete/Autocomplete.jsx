@@ -1,14 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+
 import s from "./Autocomplete.module.css";
+
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+
 import useOnclickOutside from "react-cool-onclickoutside";
+
 import sityState from "../../store/sityState";
 import modalState from "../../store/modalState";
+import markerState from "../../store/markerState";
+
 import { observer } from "mobx-react-lite";
+
 import { getAllMarkers, postMarker } from "../../service";
+
+import Marker from "../MyMarker";
 
 const Autocomlete = observer(({ isLoaded }) => {
   const [time, setTime] = useState("");

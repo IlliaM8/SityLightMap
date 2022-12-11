@@ -9,6 +9,7 @@ import DeleteIcon from "../../assets/delete.png";
 
 import s from "./MyMarker.module.css";
 import markerState from "../../store/markerState";
+import { deleteMarker } from "../../service";
 const MyMarker = observer(() => {
   const [activeMarker, setActiveMarker] = useState(null);
 
@@ -21,6 +22,7 @@ const MyMarker = observer(() => {
   const removeMarker = (e) => {
     e.preventDefault();
     markerState.deleteMarker(activeMarker);
+    deleteMarker(activeMarker);
   };
 
   return markerState.marker.map((mark) => (
@@ -38,14 +40,8 @@ const MyMarker = observer(() => {
         >
           <div className={s.info}>
             Час відключення: {mark.time}
-            <div className={s.delete}>
-              Видалити{" "}
-              <img
-                className={s.trashCan}
-                src={DeleteIcon}
-                alt=""
-                onClick={(e) => removeMarker(e)}
-              />
+            <div className={s.delete} onClick={(e) => removeMarker(e)}>
+              Видалити <img className={s.trashCan} src={DeleteIcon} alt="" />
             </div>
           </div>
         </InfoWindowF>

@@ -3,6 +3,6 @@ export default class Marker {
     this.coords = coords;
     this.description = description;
     this.time = time;
-    this.id = id;
+    this._id = id;
   }
 }

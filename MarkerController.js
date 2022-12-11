@@ -21,9 +21,9 @@ class MarkerController {
   async deleteMarker(req, res) {
     try {
       const mark = await MarkerService.deleteMarker(req.params.id);
-      return res.json(mark);
+      return res.json("delleted");
     } catch (e) {
-      console.log(e.message);
+      res.status(300).json(e.message);
     }
   }
 }

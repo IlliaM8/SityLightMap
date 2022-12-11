@@ -1,4 +1,5 @@
 import Marker from "./Marker.js";
+import mongoose from "mongoose";
 
 class MarkerService {
   async getMarkers() {
@@ -16,10 +17,11 @@ class MarkerService {
   }
 
   async deleteMarker(id) {
-    if (!id) {
+    if (!id && mongoose.Types.ObjectId.isValid(id)) {
       throw new Error("id not defined");
     }
-    const marker = await Marker.findByIdAndDelete(id);
+    const _id = id.substr(1);
+    const marker = await Marker.findByIdAndDelete(_id);
     return marker;
   }
 }
