@@ -1,0 +1,28 @@
+.select {
+  width: 160px;
+  z-index: 100;
+  order: 2;
+}
+.sity-select__control {
+  min-height: 20px !important;
+}
+.sity-select__control--menu-is-open {
+  border-color: rgb(215, 212, 212) !important;
+  box-shadow: 0 0 0 1px rgb(195, 191, 191) !important;
+}
+.sity-select__control--is-focused {
+  border-color: rgb(215, 212, 212) !important;
+  box-shadow: 0 0 0 1px rgb(195, 191, 191) !important;
+}
+.sity-select__option {
+  cursor: pointer !important;
+}
+.sity-select__option--is-focused {
+  color: black !important;
+
+  background-color: rgba(10, 10, 10, 0.205) !important;
+}
+
+.sity-select__option:hover {
+  background-color: rgba(10, 10, 10, 0.205) !important;
+}

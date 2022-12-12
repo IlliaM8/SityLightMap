@@ -14,8 +14,8 @@ const center = {
 };
 
 const defaultOptions = {
-  panControl: true,
-  zoomControl: true,
+  panControl: false,
+  zoomControl: false,
   mapTypeControl: false,
   streetViewControl: false,
   rotateControl: false,
@@ -46,6 +46,8 @@ function Map({ coords }) {
         onUnmount={onUnmount}
         options={defaultOptions}
         language="uk"
+        maxZoom={14}
+        minZoom={14}
       >
         <MyMarker coords={coords} />
       </GoogleMap>

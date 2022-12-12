@@ -22,6 +22,7 @@
 .listItem {
   border: 1px solid rgba(0, 0, 0, 0.295);
   padding: 3px;
+  font-weight: normal;
 }
 .listItem:first-child {
   border-top-left-radius: 5px;
@@ -31,11 +32,35 @@
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+.main__text {
+  font-weight: normal;
+}
 .timeInput {
-  width: 100%;
+  width: 35%;
   padding: 6px 6px 6px 6px;
   border: 1px solid rgba(0, 0, 0, 0.295);
   border-radius: 5px;
+  text-align: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.timeBlock {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.timeBlock label {
+  font-size: 12px;
+  align-self: center;
+  margin-left: 5px;
 }
 .main__text {
   font-size: 14px;

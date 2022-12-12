@@ -17,10 +17,6 @@ import { observer } from "mobx-react-lite";
 import { getAllMarkers, postMarker } from "../../service";
 
 const Autocomlete = observer(({ isLoaded }) => {
-  const [time, setTime] = useState("");
-
-  const [description, setDescr] = useState("");
-
   const {
     ready,
     value,
@@ -38,6 +34,14 @@ const Autocomlete = observer(({ isLoaded }) => {
     },
     debounce: 300,
   });
+
+  const [hours, setHours] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [description, setDescr] = useState("");
+  const [validForm, setValidForm] = useState(false);
+
+  const time = `${hours}:${minutes}`;
+
   const ref = useOnclickOutside(() => {
     // When user clicks outside of the component, we can dismiss
     // the searched suggestions by calling this method
@@ -64,13 +68,11 @@ const Autocomlete = observer(({ isLoaded }) => {
     };
 
   const getInform = (description) => {
-    getGeocode({ address: description })
-      .then((results) => {
-        const { lat, lng } = getLatLng(results[0]);
-        postMarker({ lat: lat, lng: lng }, description, time);
-        getAllMarkers();
-      })
-      .catch();
+    getGeocode({ address: description }).then((results) => {
+      const { lat, lng } = getLatLng(results[0]);
+      postMarker({ lat: lat, lng: lng }, description, time);
+      getAllMarkers();
+    });
   };
   const renderSuggestions = () =>
     data.map((suggestion) => {
@@ -119,6 +121,36 @@ const Autocomlete = observer(({ isLoaded }) => {
   const toggleModal = () => {
     modalState.toggleModal();
   };
+  const setTime = (e) => {
+    e.name == "hour" ? setHours(e.value) : setMinutes(e.value);
+  };
+
+  useEffect(() => {
+    checkHour();
+    checkMinutes();
+    if (hours.length > 0 || minutes.length > 0) {
+      setValidForm(true);
+    } else {
+      setValidForm(false);
+    }
+  }, [hours, minutes]);
+  const checkHour = () => {
+    if (hours.length > 2) {
+      setHours("");
+    }
+
+    if (hours > 24) {
+      setHours("");
+    }
+  };
+  const checkMinutes = () => {
+    if (minutes.length > 2) {
+      setMinutes("");
+    }
+    if (minutes > 60) {
+      setMinutes("");
+    }
+  };
 
   return (
     <div className={s.root} ref={ref}>
@@ -141,16 +173,37 @@ const Autocomlete = observer(({ isLoaded }) => {
         {status === "OK" && (
           <ul className={s.suggestion}>{renderSuggestions()}</ul>
         )}
-        <label htmlFor="timeInput">Час</label>
+        <label>Час відключення</label>
+        <div className={s.timeBlock}>
+          <div>
+            <input
+              type="number"
+              value={hours}
+              onChange={(e) => setTime(e.target)}
+              className={s.timeInput}
+              name="hour"
+              id="hours"
+            />
+            <label htmlFor="hours">Година</label>
+          </div>
+          <div>
+            <input
+              type="number"
+              value={minutes}
+              onChange={(e) => setTime(e.target)}
+              name="minutes"
+              className={s.timeInput}
+              id="minutes"
+            />
+            <label htmlFor="minutes">Хвилина</label>
+          </div>
+        </div>
         <input
-          type="text"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          className={s.timeInput}
-          id="timeInput"
-          placeholder="Час відключення"
+          disabled={validForm ? false : true}
+          className={s.submitButton}
+          onClick={toggleModal}
+          type="submit"
         />
-        <input className={s.submitButton} onClick={toggleModal} type="submit" />
       </form>
     </div>
   );
