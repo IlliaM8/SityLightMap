@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import config from "config";
 import cors from "cors";
 import router from "./MarkerRouter.js";
+const path = require("path");
+
 const app = express();
 
 const PORT = config.get("port") || 5000;
@@ -12,6 +14,13 @@ mongoose.set("strictQuery", true);
 app.use(express.json());
 app.use(cors());
 app.use("/api", router);
+
+if (process.env.NODE_ENV === "production") {
+  app.use("/", express.static(path.join(__dirname, "Front", "build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "Front", "build", "index.html"));
+  });
+}
 
 async function start() {
   try {

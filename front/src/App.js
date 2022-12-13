@@ -7,12 +7,10 @@ import Map from "./component/Map/Map";
 
 import SitiesSelect from "./component/SitiesSelect/SitiesSelect";
 import Modal from "./component/Modal/Modal";
-
 import modalState from "./store/modalState";
 
 import Autocomlete from "./component/Autocomlete/Autocomplete";
 import Greeting from "./component/Greeting/Greeting";
-import { useState } from "react";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ["places"];
