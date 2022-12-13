@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 import config from "config";
 import cors from "cors";
 import router from "./MarkerRouter.js";
-const path = require("path");
 
 const app = express();
 
