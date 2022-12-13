@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 import config from "config";
 import cors from "cors";
 import router from "./MarkerRouter.js";
+import path from "path";
 
 const app = express();
+const __dirname = path.resolve();
 
 const PORT = config.get("port") || 5000;
 
