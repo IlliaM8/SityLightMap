@@ -10,6 +10,14 @@ const Modal = observer(({ isLoaded, children }) => {
   if (isLoaded) {
     rootClasses.push(s.loaded);
   }
+
+  return (
+    <div className={rootClasses.join(" ")}>
+      <div className={s.modal__content} onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
+    </div>
+  );
 });
 
 export default Modal;

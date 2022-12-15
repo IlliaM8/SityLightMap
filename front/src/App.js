@@ -41,7 +41,6 @@ function App() {
       <div onClick={() => modalState.closeModal()}>
         {isLoaded ? <Map /> : <Loader />}
       </div>
-      <button className="info__button" />
     </div>
   );
 }
