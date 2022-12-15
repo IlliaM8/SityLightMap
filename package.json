@@ -4,7 +4,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
+    "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix Front",
     "client:install": "npm run install --prefix Front",
