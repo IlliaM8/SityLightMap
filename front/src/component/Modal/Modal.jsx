@@ -2,7 +2,6 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import s from "./Modal.module.css";
 import modalState from "../../store/modalState";
-import Greeting from "../Greeting/Greeting";
 const Modal = observer(({ isLoaded, children }) => {
   const rootClasses = [s.modal__conatainer];
   if (modalState.state) {
@@ -11,15 +10,6 @@ const Modal = observer(({ isLoaded, children }) => {
   if (isLoaded) {
     rootClasses.push(s.loaded);
   }
-
-  if (Greeting)
-    return (
-      <div className={rootClasses.join(" ")}>
-        <div className={s.modal__content} onClick={(e) => e.stopPropagation()}>
-          {children}
-        </div>
-      </div>
-    );
 });
 
 export default Modal;

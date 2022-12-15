@@ -10,7 +10,6 @@ import Modal from "./component/Modal/Modal";
 import modalState from "./store/modalState";
 
 import Autocomlete from "./component/Autocomlete/Autocomplete";
-import Greeting from "./component/Greeting/Greeting";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ["places"];
@@ -41,8 +40,8 @@ function App() {
       </div>
       <div onClick={() => modalState.closeModal()}>
         {isLoaded ? <Map /> : <Loader />}
-        {isLoaded ? <Greeting /> : null}
       </div>
+      <button className="info__button" />
     </div>
   );
 }
