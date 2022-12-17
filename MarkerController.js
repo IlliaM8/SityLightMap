@@ -1,4 +1,3 @@
-import Marker from "./Marker.js";
 import MarkerService from "./MarkerService.js";
 
 class MarkerController {

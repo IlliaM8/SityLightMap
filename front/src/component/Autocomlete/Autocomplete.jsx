@@ -120,6 +120,7 @@ const Autocomlete = observer(({ isLoaded }) => {
   }
   const toggleModal = () => {
     modalState.toggleModal();
+    console.log(1);
   };
   const setTime = (e) => {
     e.name == "hour" ? setHours(e.value) : setMinutes(e.value);
@@ -153,8 +154,8 @@ const Autocomlete = observer(({ isLoaded }) => {
   };
 
   return (
-    <div className={s.root} ref={ref}>
-      <div className={crossClass.join(" ")} onClick={toggleModal}>
+    <div onClick={(e) => e.stopPropagation()} className={s.root} ref={ref}>
+      <div className={crossClass.join(" ")} onClick={() => toggleModal()}>
         <span className={s.cross__bar}></span>
         <span className={s.cross__bar}></span>
       </div>

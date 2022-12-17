@@ -4,6 +4,7 @@ import config from "config";
 import cors from "cors";
 import router from "./MarkerRouter.js";
 import path from "path";
+import formRouter from "./FormRouter.js";
 
 const app = express();
 const __dirname = path.resolve();
@@ -14,7 +15,9 @@ mongoose.set("strictQuery", true);
 
 app.use(express.json());
 app.use(cors());
+
 app.use("/api", router);
+app.use("/api", formRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use("/", express.static(path.join(__dirname, "Front", "build")));

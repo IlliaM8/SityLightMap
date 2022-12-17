@@ -1,23 +1,18 @@
 import { makeAutoObservable } from "mobx";
-class ModalState {
+class SubModalState {
   state = false;
-  subState = false;
   constructor() {
     makeAutoObservable(this);
   }
   openModal() {
-    this.state = true;
-    this.subState = false;
+    this.state = !this.state;
   }
-  openSub() {
-    this.sub = true;
-  }
+
   closeModal() {
     this.state = false;
-    this.sub = false;
   }
   toggleModal() {
     this.state = !this.state;
   }
 }
-export default new ModalState();
+export default new SubModalState();

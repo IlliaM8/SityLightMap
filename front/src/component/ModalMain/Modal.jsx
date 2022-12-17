@@ -10,12 +10,13 @@ const Modal = observer(({ isLoaded, children }) => {
   if (isLoaded) {
     rootClasses.push(s.loaded);
   }
-
+  function handleModal(e) {
+    e.stopPropagation();
+    modalState.closeModal();
+  }
   return (
-    <div className={rootClasses.join(" ")}>
-      <div className={s.modal__content} onClick={(e) => e.stopPropagation()}>
-        {children}
-      </div>
+    <div onClick={(e) => handleModal(e)} className={rootClasses.join(" ")}>
+      {children}
     </div>
   );
 });

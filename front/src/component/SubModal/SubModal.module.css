@@ -1,0 +1,25 @@
+.subModal__container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
+  scale: 0;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+.subModal__content {
+  z-index: 1000;
+}
+.subModal__container.active {
+  display: flex;
+  transition: all 0.5s ease-out;
+  scale: 1;
+  opacity: 1;
+}
+.subModal__container.loaded {
+  pointer-events: all;
+}
