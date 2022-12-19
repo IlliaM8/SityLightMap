@@ -1,4 +1,4 @@
-import MarkerService from "./MarkerService.js";
+import MarkerService from "../service/MarkerService.js";
 
 class MarkerController {
   async getMarkers(req, res) {
@@ -19,7 +19,7 @@ class MarkerController {
   }
   async deleteMarker(req, res) {
     try {
-      const mark = await MarkerService.deleteMarker(req.params.id);
+      await MarkerService.deleteMarker(req.params.id);
       return res.json("delleted");
     } catch (e) {
       res.status(300).json(e.message);

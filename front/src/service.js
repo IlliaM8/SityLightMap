@@ -28,3 +28,14 @@ export async function postMarker(coords, description, time) {
     console.log(e.message);
   }
 }
+export async function postForm(name, email, text) {
+  try {
+    await axios.post("./api/form", {
+      name,
+      email,
+      text,
+    });
+  } catch (e) {
+    console.log(e.message);
+  }
+}

@@ -1,4 +1,4 @@
-import Marker from "./Marker.js";
+import Marker from "../Marker.js";
 import mongoose from "mongoose";
 
 class MarkerService {

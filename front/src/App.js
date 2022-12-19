@@ -11,13 +11,15 @@ import modalState from "./store/modalState";
 
 import Autocomlete from "./component/Autocomlete/Autocomplete";
 import SubModal from "./component/SubModal/SubModal";
-import subModalState from "./store/subModalState";
 import Infromation from "./component/Information/Information";
+import Button from "./component/Button/Button";
+import { observer } from "mobx-react-lite";
+import FeedBackForm from "./component/FeedBackForm/FeedBackForm";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ["places"];
 
-function App() {
+const App = observer(() => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
@@ -40,20 +42,29 @@ function App() {
           <Autocomlete isLoaded={isLoaded} />
         </Modal>
       </div>
-      <div onClick={() => modalState.closeModal()}>
+      <div>
         {isLoaded ? <Map /> : <Loader />}
-        <button
-          className="info-button"
-          onClick={() => subModalState.openModal()}
-        >
-          <div className="info-button__icon"></div>
-        </button>
-        <SubModal>
+        <Button top={10} right={20}>
+          <div
+            onClick={() => modalState.toggleInfoModal()}
+            className="info-button__icon"
+          ></div>
+        </Button>
+        <Button top={50} right={20}>
+          <div
+            onClick={() => modalState.toggleFormModal()}
+            className="mail-button__icon"
+          ></div>
+        </Button>
+        <SubModal state={modalState.infModal}>
           <Infromation />
+        </SubModal>
+        <SubModal state={modalState.formModal}>
+          <FeedBackForm />
         </SubModal>
       </div>
     </div>
   );
-}
+});
 
 export default App;

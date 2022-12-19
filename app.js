@@ -2,9 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import config from "config";
 import cors from "cors";
-import router from "./MarkerRouter.js";
+
 import path from "path";
-import formRouter from "./FormRouter.js";
+import router from "./router/MarkerRouter.js";
+import formRouter from "./router/FormRouter.js";
 
 const app = express();
 const __dirname = path.resolve();
@@ -28,8 +29,8 @@ if (process.env.NODE_ENV === "production") {
 
 async function start() {
   try {
-    await mongoose.connect(config.get("mongoURL"));
     app.listen(PORT, () => console.log("server started" + PORT));
+    await mongoose.connect(config.get("mongoURL"));
   } catch (e) {
     console.log(e.message);
   }

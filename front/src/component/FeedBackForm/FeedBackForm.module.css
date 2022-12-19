@@ -1,0 +1,29 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  gap: 10px;
+  width: 300px;
+}
+.form__group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.form__input {
+  width: 180px;
+  padding: 6px 6px 6px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.295);
+  border-radius: 5px;
+}
+.form__submit {
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgba(111, 94, 94, 0.263);
+  margin-top: 10px;
+}
+.label {
+  width: 50px;
+}

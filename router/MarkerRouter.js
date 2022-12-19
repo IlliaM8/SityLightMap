@@ -1,5 +1,5 @@
 import Router from "express";
-import MarkerController from "./MarkerController.js";
+import MarkerController from "../controller/MarkerController.js";
 const router = new Router();
 
 router.get("/markers", MarkerController.getMarkers);

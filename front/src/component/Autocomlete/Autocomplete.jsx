@@ -118,10 +118,7 @@ const Autocomlete = observer(({ isLoaded }) => {
   if (modalState.state) {
     crossClass.push(s.active);
   }
-  const toggleModal = () => {
-    modalState.toggleModal();
-    console.log(1);
-  };
+
   const setTime = (e) => {
     e.name == "hour" ? setHours(e.value) : setMinutes(e.value);
   };
@@ -155,7 +152,10 @@ const Autocomlete = observer(({ isLoaded }) => {
 
   return (
     <div onClick={(e) => e.stopPropagation()} className={s.root} ref={ref}>
-      <div className={crossClass.join(" ")} onClick={() => toggleModal()}>
+      <div
+        className={crossClass.join(" ")}
+        onClick={() => modalState.toggleModal()}
+      >
         <span className={s.cross__bar}></span>
         <span className={s.cross__bar}></span>
       </div>
@@ -202,7 +202,7 @@ const Autocomlete = observer(({ isLoaded }) => {
         <input
           disabled={validForm ? false : true}
           className={s.submitButton}
-          onClick={toggleModal}
+          onClick={() => modalState.toggleModal()}
           type="submit"
         />
       </form>

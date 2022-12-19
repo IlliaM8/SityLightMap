@@ -1,21 +1,10 @@
 import React from "react";
 import s from "./Information.module.css";
 import logo from "../../assets/pngegg.png";
-import subModalState from "../../store/subModalState";
+import modalState from "../../store/modalState";
 function Infromation() {
-  const crossClass = [s.cross];
-  if (subModalState.state) {
-    crossClass.push(s.active);
-  }
   return (
     <div className={s.information__container}>
-      <div
-        className={crossClass.join(" ")}
-        onClick={() => subModalState.closeModal()}
-      >
-        <span className={s.cross__bar}></span>
-        <span className={s.cross__bar}></span>
-      </div>
       <header className={s.information__header}>
         {/* <img className={s.header__logo} src={logo} alt="" /> */}
 
