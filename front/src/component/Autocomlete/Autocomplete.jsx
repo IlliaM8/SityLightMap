@@ -71,7 +71,7 @@ const Autocomlete = observer(({ isLoaded }) => {
     getGeocode({ address: description }).then((results) => {
       const { lat, lng } = getLatLng(results[0]);
       postMarker({ lat: lat, lng: lng }, description, time);
-      getAllMarkers();
+      getAllMarkers().catch(console.log(1));
     });
   };
   const renderSuggestions = () =>

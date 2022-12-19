@@ -17,7 +17,16 @@
   padding: 6px 6px 6px 6px;
   border: 1px solid rgba(0, 0, 0, 0.295);
   border-radius: 5px;
+  resize: none;
 }
+.form__input__error {
+  width: 180px;
+  padding: 6px 6px 6px 6px;
+  border: 1px solid red;
+  border-radius: 5px;
+  resize: none;
+}
+
 .form__submit {
   padding: 5px;
   border-radius: 10px;

@@ -14,7 +14,6 @@ const transporter = NodeMailer.createTransport({
 class FormService {
   async getForm(inf) {
     const { name, email, text } = inf;
-    console.log(name, email, text);
     let mailOption = {
       from: email, // sender address
       to: config.get("login"), // list of receivers

@@ -5,7 +5,7 @@
   height: 80%;
   max-width: 600px;
   gap: 20px;
-  padding: 20px;
+  padding: 15px;
   background-color: white;
   border-radius: 10px;
 }
@@ -22,4 +22,9 @@
 
 .cross.active {
   transform: rotate(0deg);
+}
+@media (max-width: 720px) {
+  .information__container {
+    max-width: 340px;
+  }
 }
