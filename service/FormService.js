@@ -1,9 +1,11 @@
 import NodeMailer from "nodemailer";
 const transporter = NodeMailer.createTransport({
-  service: "Outlook365", // no need to set host or port etc.
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // true for 465, false for other ports
   auth: {
-    user: "strelchuk.illia@outlook.com",
-    pass: "Ilua1235x",
+    user: testAccount.user, // generated ethereal user
+    pass: testAccount.pass, // generated ethereal password
   },
 });
 
