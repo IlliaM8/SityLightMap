@@ -127,22 +127,12 @@ h6 {
   background-color: white;
 }
 
-.info-button__icon {
+.button__icon {
   width: 100%;
   height: 100%;
-  background-image: url(./assets/info.png);
-  background-size: cover;
-  background-repeat: no-repeat;
   z-index: 1111111;
 }
-.mail-button__icon {
-  width: 100%;
-  height: 100%;
-  background-image: url(./assets/email.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: 1111111;
-}
+
 @media (max-width: 720px) {
   .addressSearchContainer {
     gap: 50px;

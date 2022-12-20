@@ -94,7 +94,7 @@ const FeedBackForm = () => {
     setSent(false);
   }, [modalState.formModal]);
   return (
-    <form action="#" className={s.form}>
+    <form disabled action="#" className={s.form}>
       {nameDirty && <div style={{ color: "red" }}>{nameError}</div>}
       {!sent && (
         <div className={s.form__group}>

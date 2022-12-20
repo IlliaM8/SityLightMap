@@ -16,6 +16,9 @@ import Button from "./component/Button/Button";
 import { observer } from "mobx-react-lite";
 import FeedBackForm from "./component/FeedBackForm/FeedBackForm";
 
+import infoImg from "./assets/info.png";
+import mailImg from "./assets/email.png";
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 const libraries = ["places"];
 
@@ -25,6 +28,7 @@ const App = observer(() => {
     googleMapsApiKey: API_KEY,
     libraries,
   });
+
   return (
     <div className="App">
       <div className="addressSearchContainer">
@@ -45,16 +49,20 @@ const App = observer(() => {
       <div>
         {isLoaded ? <Map /> : <Loader />}
         <Button top={10} right={20}>
-          <div
+          <img
+            className="button__icon"
             onClick={() => modalState.toggleInfoModal()}
-            className="info-button__icon"
-          ></div>
+            src={infoImg}
+            alt="Інформація"
+          />
         </Button>
         <Button top={50} right={20}>
-          <div
+          <img
+            className="button__icon"
             onClick={() => modalState.toggleFormModal()}
-            className="mail-button__icon"
-          ></div>
+            src={mailImg}
+            alt="Зв'язок"
+          />
         </Button>
         <SubModal state={modalState.infModal}>
           <Infromation />

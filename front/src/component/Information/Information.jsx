@@ -8,7 +8,7 @@ function Infromation() {
       <header className={s.information__header}>
         {/* <img className={s.header__logo} src={logo} alt="" /> */}
 
-        <h1 className={s.header__title}>Lorem </h1>
+        <h1 className={s.header__title}>Доброго дня</h1>
       </header>
       <div className={s.header__text}>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab in cumque
