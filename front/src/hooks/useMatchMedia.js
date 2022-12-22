@@ -1,4 +1,3 @@
-import { set } from "mobx";
 import { useLayoutEffect, useState } from "react";
 const queries = [
   "(max-width:766px)",
@@ -8,13 +7,17 @@ const queries = [
 
 export function useMatchMedia() {
   const mediaQuaryLists = queries.map((query) => matchMedia(query));
-  const getValue = mediaQuaryLists.map((mql) => mql.matches);
+  const getValue = () => mediaQuaryLists.map((mql) => mql.matches);
   const [value, setValue] = useState(getValue);
   useLayoutEffect(() => {
     const handler = () => setValue(getValue);
     mediaQuaryLists.forEach((mql) => mql.addEventListener("change", handler));
   });
   return ["isMobile", "isTablet", "isDesktop"].reduce(
-    (acc, screen, index) => ({})
+    (acc, screen, index) => ({
+      ...acc,
+      [screen]: value[index],
+    }),
+    {}
   );
 }

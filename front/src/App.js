@@ -30,13 +30,14 @@ const App = observer(() => {
     googleMapsApiKey: API_KEY,
     libraries,
   });
+  const { isMobile } = useMatchMedia();
   return (
     <div className="App">
       <div className="addressSearchContainer">
         <div className="addressSearchContainer__panel">
           <SitiesSelect isLoaded={isLoaded} />
           <button
-            // disabled={isLoaded ? false : true}
+            disabled={isLoaded ? true : false}
             className="button"
             onClick={() => modalState.toggleModal()}
           >
@@ -62,12 +63,16 @@ const App = observer(() => {
             alt="Зв'язок"
           />
         </Button>
-        {/* <Modal state={modalState.state}>
-          <Autocomlete />
-        </Modal> */}
-        <SideMenu state={modalState.state}>
-          <Autocomlete />
-        </SideMenu>
+        {isMobile ? (
+          <SideMenu state={modalState.state}>
+            <Autocomlete />
+          </SideMenu>
+        ) : (
+          <Modal state={modalState.state}>
+            <Autocomlete />
+          </Modal>
+        )}
+
         <Modal state={modalState.infModal}>
           <Infromation />
         </Modal>

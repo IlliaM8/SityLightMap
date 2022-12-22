@@ -115,10 +115,6 @@ const Autocomlete = observer(({ isLoaded }) => {
     e.preventDefault();
     getInform(description);
   };
-  const crossClass = [s.cross];
-  if (modalState.state) {
-    crossClass.push(s.active);
-  }
 
   const setTime = (e) => {
     e.name == "hour" ? setHours(e.value) : setMinutes(e.value);
