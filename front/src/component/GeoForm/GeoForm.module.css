@@ -1,0 +1,101 @@
+.form {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.input {
+  width: 100%;
+  padding: 6px 6px 6px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.295);
+  border-radius: 5px;
+}
+.suggestion {
+  background-color: white;
+  list-style-type: none;
+  border-radius: 5px;
+}
+.listItem {
+  border: 1px solid rgba(0, 0, 0, 0.295);
+  padding: 3px;
+  font-weight: normal;
+}
+.listItem:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.listItem:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.main__text {
+  font-weight: normal;
+}
+.timeInput {
+  width: 35%;
+  padding: 6px 6px 6px 6px;
+  border: 1px solid rgba(0, 0, 0, 0.295);
+  border-radius: 5px;
+  text-align: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.timeBlock {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.timeBlock label {
+  font-size: 12px;
+  align-self: center;
+  margin-left: 5px;
+}
+.main__text {
+  font-size: 14px;
+  font-weight: 600;
+}
+.secondary__text {
+  font-size: 14px;
+}
+.submitButton {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgba(111, 94, 94, 0.263);
+}
+.cross {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 25px;
+  height: 25px;
+  transition: all 0.5s ease-in-out;
+}
+.cross__bar {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  background-color: rgb(111, 94, 94);
+  width: 25px;
+  height: 3px;
+  border-radius: 2px;
+}
+.cross__bar:first-child {
+  transform: rotate(45deg);
+}
+.cross__bar:last-child {
+  transform: rotate(-45deg);
+}
+.cross:hover {
+  transform: rotate(180deg);
+  scale: 1.1;
+}

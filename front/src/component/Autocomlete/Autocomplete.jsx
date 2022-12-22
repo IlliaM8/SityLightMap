@@ -153,13 +153,6 @@ const Autocomlete = observer(({ isLoaded }) => {
 
   return (
     <div onClick={(e) => e.stopPropagation()} className={s.root} ref={ref}>
-      <div
-        className={crossClass.join(" ")}
-        onClick={() => modalState.toggleModal()}
-      >
-        <span className={s.cross__bar}></span>
-        <span className={s.cross__bar}></span>
-      </div>
       <GeoForm
         getInformation={getInformation}
         handleInput={handleInput}

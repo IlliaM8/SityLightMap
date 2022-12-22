@@ -6,7 +6,6 @@ import { useJsApiLoader } from "@react-google-maps/api";
 import Map from "./component/Map/Map";
 
 import SitiesSelect from "./component/SitiesSelect/SitiesSelect";
-import Modal from "./component/ModalMain/Modal";
 import modalState from "./store/modalState";
 
 import Autocomlete from "./component/Autocomlete/Autocomplete";
@@ -18,7 +17,8 @@ import FeedBackForm from "./component/FeedBackForm/FeedBackForm";
 import infoImg from "./assets/info.png";
 import mailImg from "./assets/email.png";
 import { useMatchMedia } from "./hooks/useMatchMedia";
-import SubModal from "./component/UI/SubModal/SubModal";
+import Modal from "./component/UI/Modal/Modal";
+import SideMenu from "./component/UI/SideMenu/SideMenu";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -30,7 +30,6 @@ const App = observer(() => {
     googleMapsApiKey: API_KEY,
     libraries,
   });
-  useMatchMedia();
   return (
     <div className="App">
       <div className="addressSearchContainer">
@@ -44,9 +43,6 @@ const App = observer(() => {
             Натисніть щоб додати мітку
           </button>
         </div>
-        <Modal isLoaded={isLoaded}>
-          <Autocomlete isLoaded={isLoaded} />
-        </Modal>
       </div>
       <div>
         {isLoaded ? <Map /> : <Loader />}
@@ -66,12 +62,18 @@ const App = observer(() => {
             alt="Зв'язок"
           />
         </Button>
-        <SubModal state={modalState.infModal}>
+        {/* <Modal state={modalState.state}>
+          <Autocomlete />
+        </Modal> */}
+        <SideMenu state={modalState.state}>
+          <Autocomlete />
+        </SideMenu>
+        <Modal state={modalState.infModal}>
           <Infromation />
-        </SubModal>
-        <SubModal state={modalState.formModal}>
+        </Modal>
+        <Modal state={modalState.formModal}>
           <FeedBackForm />
-        </SubModal>
+        </Modal>
       </div>
     </div>
   );

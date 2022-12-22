@@ -1,8 +1,8 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
 import modalState from "../../../store/modalState";
-import s from "./SubModal.module.css";
-const SubModal = observer(({ children, state }) => {
+import s from "./Modal.module.css";
+const Modal = observer(({ children, state }) => {
   const rootClasses = [s.subModal__container];
 
   if (state) {
@@ -25,4 +25,4 @@ const SubModal = observer(({ children, state }) => {
   );
 });
 
-export default SubModal;
+export default Modal;

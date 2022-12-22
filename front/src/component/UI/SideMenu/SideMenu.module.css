@@ -28,11 +28,13 @@
 }
 .cross {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 25px;
-  height: 25px;
+  top: 93px;
+  right: 0px;
+  width: 15px;
+  height: 23px;
   transition: all 0.5s ease-in-out;
+  transform: rotate(180deg);
+
   z-index: 10000;
 }
 .cross__bar {
@@ -45,12 +47,25 @@
   border-radius: 2px;
 }
 .cross__bar:first-child {
-  transform: rotate(45deg);
+  transform: translateY(5px) rotate(45deg);
 }
 .cross__bar:last-child {
-  transform: rotate(-45deg);
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+.cross.active {
+  transform: rotate(0deg);
 }
 .cross:hover {
   transform: rotate(180deg);
   scale: 1.1;
+}
+@media (max-width: 720px) {
+  .cross {
+    top: 93px;
+    right: 0px;
+    width: 15px;
+    height: 23px;
+    transform: rotate(180deg);
+  }
 }
