@@ -1,6 +1,7 @@
+import { observer } from "mobx-react-lite";
 import modalState from "../../../store/modalState";
 import s from "./SideMenu.module.css";
-function SideMenu({ state, children }) {
+const SideMenu = ({ state, children }) => {
   const rootClasses = [s.sideMenu__container];
 
   if (state) {
@@ -13,7 +14,7 @@ function SideMenu({ state, children }) {
       onClick={() => modalState.closeModal()}
     >
       <div className={s.sideMenu__content} onClick={(e) => e.stopPropagation()}>
-        <div className={s.cross} onClick={() => modalState.closeModal()}>
+        <div className={s.cross} onClick={() => modalState.toggleModal()}>
           <span className={s.cross__bar}></span>
           <span className={s.cross__bar}></span>
         </div>
@@ -21,6 +22,6 @@ function SideMenu({ state, children }) {
       </div>
     </div>
   );
-}
+};
 
 export default SideMenu;

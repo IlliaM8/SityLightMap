@@ -1,17 +1,16 @@
 .sideMenu__container {
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   top: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0);
-  scale: 0;
-  opacity: 0;
   transition: all 0.5s ease-out;
-  margin: 0 auto;
+  transform: translate(-235px);
 }
+
 .sideMenu__content {
   position: relative;
   display: flex;
@@ -19,9 +18,9 @@
 }
 .sideMenu__container.active {
   display: flex;
+  transform: translate(-10px);
+
   transition: all 0.5s ease-out;
-  scale: 1;
-  opacity: 1;
 }
 .sideMenu__container.loaded {
   pointer-events: all;
@@ -40,14 +39,14 @@
 .cross__bar {
   position: absolute;
   top: 10px;
-  right: 0;
+  right: -3px;
   background-color: rgb(111, 94, 94);
-  width: 25px;
+  width: 20px;
   height: 3px;
   border-radius: 2px;
 }
 .cross__bar:first-child {
-  transform: translateY(5px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 .cross__bar:last-child {
   transform: translateY(-5px) rotate(-45deg);
@@ -55,17 +54,4 @@
 
 .cross.active {
   transform: rotate(0deg);
-}
-.cross:hover {
-  transform: rotate(180deg);
-  scale: 1.1;
-}
-@media (max-width: 720px) {
-  .cross {
-    top: 93px;
-    right: 0px;
-    width: 15px;
-    height: 23px;
-    transform: rotate(180deg);
-  }
 }
