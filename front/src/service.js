@@ -25,7 +25,7 @@ export async function postMarker(coords, description, time) {
     });
     getAllMarkers();
   } catch (e) {
-    console.log(e.message);
+    console.log(e);
   }
 }
 export async function postForm(name, email, text) {

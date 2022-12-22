@@ -8,8 +8,11 @@ import MarkerIcon from "../../assets/pngegg.png";
 import DeleteIcon from "../../assets/delete.png";
 
 import s from "./MyMarker.module.css";
+
 import markerState from "../../store/markerState";
+
 import { deleteMarker } from "../../service";
+
 const MyMarker = observer(() => {
   const [activeMarker, setActiveMarker] = useState(null);
 

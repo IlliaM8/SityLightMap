@@ -1,9 +1,7 @@
-import { observer } from "mobx-react-lite";
-import React from "react";
-import modalState from "../../store/modalState";
-import s from "./SubModal.module.css";
-const SubModal = observer(({ children, state }) => {
-  const rootClasses = [s.subModal__container];
+import modalState from "../../../store/modalState";
+import s from "./SideMenu.module.css";
+function SideMenu({ state, children }) {
+  const rootClasses = [s.sideMenu__container];
 
   if (state) {
     rootClasses.push(s.active);
@@ -14,7 +12,7 @@ const SubModal = observer(({ children, state }) => {
       className={rootClasses.join(" ")}
       onClick={() => modalState.closeModal()}
     >
-      <div className={s.subModal__content} onClick={(e) => e.stopPropagation()}>
+      <div className={s.sideMenu__content} onClick={(e) => e.stopPropagation()}>
         <div className={s.cross} onClick={() => modalState.closeModal()}>
           <span className={s.cross__bar}></span>
           <span className={s.cross__bar}></span>
@@ -23,6 +21,6 @@ const SubModal = observer(({ children, state }) => {
       </div>
     </div>
   );
-});
+}
 
-export default SubModal;
+export default SideMenu;

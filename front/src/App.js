@@ -10,16 +10,18 @@ import Modal from "./component/ModalMain/Modal";
 import modalState from "./store/modalState";
 
 import Autocomlete from "./component/Autocomlete/Autocomplete";
-import SubModal from "./component/SubModal/SubModal";
 import Infromation from "./component/Information/Information";
-import Button from "./component/Button/Button";
+import Button from "./component/UI/Button/Button";
 import { observer } from "mobx-react-lite";
 import FeedBackForm from "./component/FeedBackForm/FeedBackForm";
 
 import infoImg from "./assets/info.png";
 import mailImg from "./assets/email.png";
+import { useMatchMedia } from "./hooks/useMatchMedia";
+import SubModal from "./component/UI/SubModal/SubModal";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
+
 const libraries = ["places"];
 
 const App = observer(() => {
@@ -28,14 +30,14 @@ const App = observer(() => {
     googleMapsApiKey: API_KEY,
     libraries,
   });
-
+  useMatchMedia();
   return (
     <div className="App">
       <div className="addressSearchContainer">
         <div className="addressSearchContainer__panel">
           <SitiesSelect isLoaded={isLoaded} />
           <button
-            disabled={isLoaded ? false : true}
+            // disabled={isLoaded ? false : true}
             className="button"
             onClick={() => modalState.toggleModal()}
           >

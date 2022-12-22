@@ -14,7 +14,7 @@ class MarkerController {
       const marker = await MarkerService.createMarker(req.body);
       res.json(marker);
     } catch (e) {
-      res.status(500).json(e.message);
+      res.status(300).json(e.message);
     }
   }
   async deleteMarker(req, res) {

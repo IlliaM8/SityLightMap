@@ -1,0 +1,56 @@
+.sideMenu__container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0);
+  scale: 0;
+  opacity: 0;
+  transition: all 0.5s ease-out;
+  margin: 0 auto;
+}
+.sideMenu__content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.sideMenu__container.active {
+  display: flex;
+  transition: all 0.5s ease-out;
+  scale: 1;
+  opacity: 1;
+}
+.sideMenu__container.loaded {
+  pointer-events: all;
+}
+.cross {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  transition: all 0.5s ease-in-out;
+  z-index: 10000;
+}
+.cross__bar {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  background-color: rgb(111, 94, 94);
+  width: 25px;
+  height: 3px;
+  border-radius: 2px;
+}
+.cross__bar:first-child {
+  transform: rotate(45deg);
+}
+.cross__bar:last-child {
+  transform: rotate(-45deg);
+}
+.cross:hover {
+  transform: rotate(180deg);
+  scale: 1.1;
+}
