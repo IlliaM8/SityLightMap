@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useValidation = (value, validations) => {
   const [isEmpty, setEmpty] = useState(true);
-  // const [minlengthError, setMinlengthError] = useState(true);
   const [emailError, setEmailError] = useState("");
   const [IsError, setError] = useState("");
   const [inputValid, setInputValid] = useState("");
@@ -15,12 +14,6 @@ export const useValidation = (value, validations) => {
   useEffect(() => {
     for (const validation in validations) {
       switch (validation) {
-        // case "minLength":
-        //   value.length < validations[validation]
-        //     ? setMinlengthError(true)
-        //     : setMinlengthError(false);
-        //   break;
-
         case "isEmpty":
           value
             ? setErrors(setEmpty, false, ``)

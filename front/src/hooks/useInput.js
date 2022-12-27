@@ -12,5 +12,5 @@ export function useInput(initialValue, validation) {
   const onBlur = () => {
     setDirty(true);
   };
-  return { value, onChange, onBlur, isDirty, ...valid };
+  return { value, onChange, setValue, onBlur, isDirty, setDirty, ...valid };
 }
