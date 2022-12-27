@@ -14,7 +14,7 @@ export function useMatchMedia() {
   useLayoutEffect(() => {
     const handler = () => setValue(getValue);
     mediaQuaryLists.forEach((mql) => mql.addEventListener("change", handler));
-  });
+  }, []);
   return ["isMobile", "isTablet", "isDesktop"].reduce(
     (acc, screen, index) => ({
       ...acc,

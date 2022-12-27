@@ -2,9 +2,9 @@ import { useState } from "react";
 import { postForm } from "../../service";
 import modalState from "../../store/modalState";
 
-export const useFormHandl = (e, name, email, text) => {
+export const useFormHandl = () => {
   const [isSent, setSent] = useState(false);
-  const handleForm = () => {
+  const handleForm = (e, name, email, text) => {
     e.preventDefault();
 
     postForm(name.value, email.value, text.value);

@@ -6,12 +6,6 @@ import Select from "react-select";
 import { observer } from "mobx-react-lite";
 
 const SitiesSelect = observer(({ isLoaded }) => {
-  const [isClearable, setIsClearable] = useState(false);
-  const [isSearchable, setIsSearchable] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isRtl, setIsRtl] = useState(false);
-
   const options = [
     {
       value: "Чорноморськ",
@@ -36,10 +30,10 @@ const SitiesSelect = observer(({ isLoaded }) => {
       value={getSity()}
       defaultValue={options[0]}
       isDisabled={isLoaded ? false : true}
-      isLoading={isLoading}
-      isClearable={isClearable}
-      isRtl={isRtl}
-      isSearchable={isSearchable}
+      isLoading={false}
+      isClearable={false}
+      isRtl={false}
+      isSearchable={false}
     />
   );
 });

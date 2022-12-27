@@ -7,6 +7,7 @@ const FeedBackForm = () => {
   const name = useInput("", { isEmpty: true });
   const email = useInput("", { isEmpty: true, isEmail: true });
   const text = useInput("", { isEmpty: true });
+
   const { isSent, handleForm } = useFormHandl();
 
   return isSent ? (
