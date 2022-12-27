@@ -148,7 +148,7 @@ const Autocomlete = observer(({ isLoaded }) => {
   };
 
   return (
-    <div onClick={(e) => e.stopPropagation()} className={s.root} ref={ref}>
+    <div className={s.root} ref={ref}>
       <GeoForm
         getInformation={getInformation}
         handleInput={handleInput}

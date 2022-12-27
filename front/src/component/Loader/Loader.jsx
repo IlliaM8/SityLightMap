@@ -1,10 +1,18 @@
 import React from "react";
-import c from "./Loader.module.css";
-function Loader({ children }) {
+import s from "./Loader.module.css";
+function Loader() {
   return (
-    <div className={c.container}>
-      <div className={c.loader}></div>
-      <span className={c.text}>{children}</span>
+    <div className={s.container}>
+      <div class={s.lds__roller}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { useFormHandl } from "./useFormHandl";
 function Form({ name, email, text, handleForm }) {
   return (
     <form action="#" className={s.form}>
+      <div className={s.form__title}>Зворотній зв'язок</div>
       {name.isDirty && name.isEmpty && (
         <div style={{ color: "red" }}>{name.IsError}</div>
       )}
