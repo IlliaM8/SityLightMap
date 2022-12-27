@@ -7,3 +7,9 @@
   background-color: white;
   border-radius: 10px;
 }
+.listItem:not(:last-child) {
+  border-bottom: 1px black solid;
+}
+.listItem {
+  padding: 3px 0 3px 5px;
+}

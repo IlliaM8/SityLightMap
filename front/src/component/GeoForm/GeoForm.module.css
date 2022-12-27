@@ -12,6 +12,7 @@
   border-radius: 5px;
 }
 .suggestion {
+  border: solid 1px black;
   background-color: white;
   list-style-type: none;
   border-radius: 5px;

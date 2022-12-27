@@ -37,7 +37,7 @@ const App = observer(() => {
         <div className="addressSearchContainer__panel">
           <SitiesSelect isLoaded={isLoaded} />
           <button
-            disabled={isLoaded ? true : false}
+            disabled={isLoaded ? false : true}
             className="button"
             onClick={() => modalState.toggleModal()}
           >
@@ -65,11 +65,11 @@ const App = observer(() => {
         </Button>
         {isMobile ? (
           <SideMenu state={modalState.state}>
-            <Autocomlete />
+            <Autocomlete isLoaded={isLoaded} />
           </SideMenu>
         ) : (
           <Modal state={modalState.state}>
-            <Autocomlete />
+            <Autocomlete isLoaded={isLoaded} />
           </Modal>
         )}
 

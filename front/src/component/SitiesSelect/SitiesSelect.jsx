@@ -4,7 +4,6 @@ import "./SitySelect.css";
 
 import Select from "react-select";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
 
 const SitiesSelect = observer(({ isLoaded }) => {
   const [isClearable, setIsClearable] = useState(false);
@@ -24,14 +23,15 @@ const SitiesSelect = observer(({ isLoaded }) => {
       ? options.find((c) => c.value === sityState.sity)
       : "";
   };
-  const setSity = (newValue) => {
-    return sityState.setSity(newValue.value);
+  const setSity = (e) => {
+    console.log(e);
+    return sityState.setSity(e.value);
   };
   return (
     <Select
       className="select"
       classNamePrefix="sity-select"
-      onChange={setSity}
+      onChange={(e) => setSity(e)}
       options={options}
       value={getSity()}
       defaultValue={options[0]}

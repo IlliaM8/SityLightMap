@@ -7,7 +7,9 @@ const queries = [
 
 export function useMatchMedia() {
   const mediaQuaryLists = queries.map((query) => matchMedia(query));
+
   const getValue = () => mediaQuaryLists.map((mql) => mql.matches);
+
   const [value, setValue] = useState(getValue);
   useLayoutEffect(() => {
     const handler = () => setValue(getValue);
