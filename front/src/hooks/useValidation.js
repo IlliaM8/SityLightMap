@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useValidation = (value, validations) => {
+export const useValidation = (value, validations, setValue) => {
   const [isEmpty, setEmpty] = useState(true);
   const [emailError, setEmailError] = useState("");
   const [IsError, setError] = useState("");
@@ -28,6 +28,13 @@ export const useValidation = (value, validations) => {
           re.test(String(value).toLowerCase())
             ? setErrors(setEmailError, false, ``)
             : setErrors(setEmailError, true, `Не дійсна пошта`);
+          break;
+        case "isHour":
+          console.log(value.length);
+          break;
+        case "isMinutes":
+          break;
+        case "isDescription":
           break;
         default:
           break;

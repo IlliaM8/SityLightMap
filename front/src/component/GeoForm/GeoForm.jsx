@@ -38,6 +38,7 @@ function GeoForm(props) {
             className={s.timeInput}
             name="hour"
             id="hours"
+            maxLength="2"
           />
           <label htmlFor="hours">Година</label>
         </div>
@@ -49,6 +50,7 @@ function GeoForm(props) {
             name="minutes"
             className={s.timeInput}
             id="minutes"
+            maxLength={2}
           />
           <label htmlFor="minutes">Хвилина</label>
         </div>

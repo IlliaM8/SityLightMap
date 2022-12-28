@@ -6,6 +6,7 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+import { useInput } from "../../hooks/useInput";
 
 import useOnclickOutside from "react-cool-onclickoutside";
 
@@ -35,6 +36,10 @@ const Autocomlete = observer(({ isLoaded }) => {
     },
     debounce: 300,
   });
+
+  const hour = useInput("", { isEmpty: true, isHour: true });
+  const minute = useInput("", { isEmpty: true, isMinutes: true });
+  const descriptionn = useInput("", { isEmpty: true, isDescription: true });
 
   const [hours, setHours] = useState("");
   const [minutes, setMinutes] = useState("");
@@ -121,31 +126,12 @@ const Autocomlete = observer(({ isLoaded }) => {
   };
 
   useEffect(() => {
-    checkHour();
-    checkMinutes();
     if (hours.length > 0 || minutes.length > 0) {
       setValidForm(true);
     } else {
       setValidForm(false);
     }
   }, [hours, minutes]);
-  const checkHour = () => {
-    if (hours.length > 2) {
-      setHours("");
-    }
-
-    if (hours > 24) {
-      setHours("");
-    }
-  };
-  const checkMinutes = () => {
-    if (minutes.length > 2) {
-      setMinutes("");
-    }
-    if (minutes > 60) {
-      setMinutes("");
-    }
-  };
 
   return (
     <div className={s.root} ref={ref}>
