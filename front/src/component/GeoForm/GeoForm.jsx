@@ -2,7 +2,7 @@ import modalState from "../../store/modalState";
 import s from "./GeoForm.module.css";
 function GeoForm(props) {
   const {
-    getInformation,
+    handleInformation,
     handleInput,
     value,
     ready,
@@ -10,10 +10,13 @@ function GeoForm(props) {
     renderSuggestions,
     hour,
     minutes,
-    validForm,
   } = props;
+  const submit = (e) => {
+    e.preventDefault();
+    handleInformation(value);
+  };
   return (
-    <form className={s.form} onSubmit={(e) => getInformation(e)} action="#">
+    <form className={s.form} onSubmit={submit}>
       <label>Адресса</label>
       <input
         type="text"
@@ -27,13 +30,21 @@ function GeoForm(props) {
       {status === "OK" && (
         <ul className={s.suggestion}>{renderSuggestions()}</ul>
       )}
+
       <label>Час відключення</label>
+      {hour.isDirty && hour.isEmpty && (
+        <div style={{ color: "red" }}>{minutes.IsError}</div>
+      )}
+      {minutes.isDirty && minutes.isEmpty && (
+        <div style={{ color: "red" }}>{minutes.IsError}</div>
+      )}
       <div className={s.timeBlock}>
         <div>
           <input
             type="number"
             value={hour.value}
             onChange={(e) => hour.onChange(e)}
+            onBlur={() => hour.onBlur()}
             className={s.timeInput}
             name="hour"
             id="hours"
@@ -41,10 +52,12 @@ function GeoForm(props) {
           />
           <label htmlFor="hours">Година</label>
         </div>
+
         <div>
           <input
             type="number"
             value={minutes.value}
+            onBlur={() => minutes.onBlur()}
             onChange={(e) => minutes.onChange(e)}
             name="minutes"
             className={s.timeInput}
@@ -55,7 +68,7 @@ function GeoForm(props) {
         </div>
       </div>
       <input
-        disabled={validForm ? false : true}
+        disabled={!hour.inputValid || !minutes.inputValid}
         className={s.submitButton}
         onClick={() => modalState.toggleModal()}
         type="submit"

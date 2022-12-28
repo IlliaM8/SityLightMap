@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 
 import s from "./Autocomplete.module.css";
 
@@ -6,16 +6,17 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+
 import { useInput } from "../../hooks/useInput";
 
 import useOnclickOutside from "react-cool-onclickoutside";
 
 import sityState from "../../store/sityState";
-import modalState from "../../store/modalState";
 
 import { observer } from "mobx-react-lite";
 
 import { getAllMarkers, postMarker } from "../../service";
+
 import GeoForm from "../GeoForm/GeoForm";
 
 const Autocomlete = observer(({ isLoaded }) => {
@@ -34,74 +35,78 @@ const Autocomlete = observer(({ isLoaded }) => {
         country: "ua",
       },
     },
-    debounce: 300,
+    debounce: 500,
   });
-
-  const hour = useInput("", { isEmpty: true, isHour: true });
-  const minute = useInput("", { isEmpty: true, isMinutes: true });
-  const descriptionn = useInput("", { isEmpty: true, isDescription: true });
-
-  const [hours, setHours] = useState("");
-  const [minutes, setMinutes] = useState("");
-  const [description, setDescr] = useState("");
-  const [validForm, setValidForm] = useState(false);
-
-  const time = `${hours}:${minutes}`;
+  const hours = useInput("", { isEmpty: true, isHour: true });
+  const minutes = useInput("", { isEmpty: true, isMinutes: true });
 
   const ref = useOnclickOutside(() => {
-    // When user clicks outside of the component, we can dismiss
-    // the searched suggestions by calling this method
     clearSuggestions();
   });
 
-  const handleInput = (e) => {
-    // Update the keyword of the input element
-    setValue(e.target.value);
-  };
-  const setSity = () => {
+  const handleInput = useCallback(
+    (e) => {
+      setValue(e.target.value);
+    },
+    [setValue]
+  );
+
+  const setSity = useCallback(() => {
     setValue(`${sityState.sity},`);
-  };
+  }, [setValue]);
 
-  const handleSelect =
+  const handleSelect = useCallback(
     ({ description }) =>
-    () => {
-      // When user selects a place, we can replace the keyword without request data from API
-      // by setting the second parameter to "false"
-      setValue(description, false);
-      clearSuggestions();
-      setDescr(description);
-      // Get latitude and longitude via utility functions
-    };
+      () => {
+        // When user selects a place, we can replace the keyword without request data from API
+        // by setting the second parameter to "false"
+        setValue(description, false);
+        clearSuggestions();
+        // Get latitude and longitude via utility functions
+      },
+    [clearSuggestions, setValue]
+  );
 
-  const getInform = (description) => {
-    getGeocode({ address: description }).then((results) => {
-      const { lat, lng } = getLatLng(results[0]);
-      postMarker({ lat: lat, lng: lng }, description, time);
-      getAllMarkers();
-    });
-  };
-  const renderSuggestions = () =>
-    data.map((suggestion) => {
-      const {
-        place_id,
-        structured_formatting: { main_text, secondary_text },
-      } = suggestion;
+  const handleInformation = useCallback(
+    (description) => {
+      getGeocode({ address: description }).then((results) => {
+        const { lat, lng } = getLatLng(results[0]);
+        postMarker(
+          { lat: lat, lng: lng },
+          description,
+          `${hours.value}:${minutes.value}`
+        );
+        setValue("");
+        getAllMarkers();
+      });
+    },
+    [hours.value, minutes.value, setValue]
+  );
 
-      return (
-        <li
-          className={s.listItem}
-          key={place_id}
-          onClick={handleSelect(suggestion)}
-        >
-          <span className={s.main__text}>{main_text},</span>
-          {/* <span className={s.secondary__text}>{secondary_text}</span> */}
-        </li>
-      );
-    });
+  const renderSuggestions = useCallback(
+    () =>
+      data.map((suggestion) => {
+        const {
+          place_id,
+          structured_formatting: { main_text },
+        } = suggestion;
+
+        return (
+          <li
+            className={s.listItem}
+            key={place_id}
+            onClick={handleSelect(suggestion)}
+          >
+            <span className={s.main__text}>{main_text},</span>
+            {/* <span className={s.secondary__text}>{secondary_text}</span> */}
+          </li>
+        );
+      }),
+    [data, handleSelect]
+  );
   useEffect(() => {
     if (isLoaded) {
       init();
-      getAllMarkers();
     }
   }, [init, isLoaded]);
 
@@ -109,42 +114,19 @@ const Autocomlete = observer(({ isLoaded }) => {
     if (!value.includes(sityState.sity)) {
       setSity(sityState.sity);
     }
-  }, [value]);
-
-  useEffect(() => {
-    setSity(sityState.sity);
-    setDescr("");
-  }, [modalState.state]);
-
-  const getInformation = (e) => {
-    e.preventDefault();
-    getInform(description);
-  };
-
-  const setTime = (e) => {
-    e.name === "hour" ? setHours(e.value) : setMinutes(e.value);
-  };
-
-  useEffect(() => {
-    if (hours.length > 0 || minutes.length > 0) {
-      setValidForm(true);
-    } else {
-      setValidForm(false);
-    }
-  }, [hours, minutes]);
+  }, [value, setSity]);
 
   return (
     <div className={s.root} ref={ref}>
       <GeoForm
-        getInformation={getInformation}
+        handleInformation={handleInformation}
         handleInput={handleInput}
         value={value}
         ready={ready}
         status={status}
         renderSuggestions={renderSuggestions}
-        hour={hour}
-        minutes={minute}
-        validForm={validForm}
+        hour={hours}
+        minutes={minutes}
       />
     </div>
   );

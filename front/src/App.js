@@ -19,18 +19,25 @@ import mailImg from "./assets/email.png";
 import { useMatchMedia } from "./hooks/useMatchMedia";
 import Modal from "./component/UI/Modal/Modal";
 import SideMenu from "./component/UI/SideMenu/SideMenu";
+import { useEffect } from "react";
+import { getAllMarkers } from "./service";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const libraries = ["places"];
 
 const App = observer(() => {
+  const { isMobile } = useMatchMedia();
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
     libraries,
   });
-  const { isMobile } = useMatchMedia();
+  useEffect(() => {
+    if (isLoaded) getAllMarkers();
+  }, [isLoaded]);
+
   return (
     <div className="App">
       <div className="addressSearchContainer">
