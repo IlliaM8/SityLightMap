@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { lengthHandle } from "../component/GeoForm/lengthHandle";
 
 export const useValidation = (value, validations, setValue) => {
   const [isEmpty, setEmpty] = useState(true);
@@ -30,9 +31,12 @@ export const useValidation = (value, validations, setValue) => {
             : setErrors(setEmailError, true, `Не дійсна пошта`);
           break;
         case "isHour":
-          console.log(value.length);
+          value.length > 2 ? setValue(lengthHandle(value)) : setValue(value);
+
           break;
         case "isMinutes":
+          value.length > 2 ? setValue(lengthHandle(value)) : setValue(value);
+
           break;
         case "isDescription":
           break;

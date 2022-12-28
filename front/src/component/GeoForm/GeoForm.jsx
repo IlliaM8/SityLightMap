@@ -8,8 +8,7 @@ function GeoForm(props) {
     ready,
     status,
     renderSuggestions,
-    hours,
-    setTime,
+    hour,
     minutes,
     validForm,
   } = props;
@@ -33,8 +32,8 @@ function GeoForm(props) {
         <div>
           <input
             type="number"
-            value={hours}
-            onChange={(e) => setTime(e.target)}
+            value={hour.value}
+            onChange={(e) => hour.onChange(e)}
             className={s.timeInput}
             name="hour"
             id="hours"
@@ -45,8 +44,8 @@ function GeoForm(props) {
         <div>
           <input
             type="number"
-            value={minutes}
-            onChange={(e) => setTime(e.target)}
+            value={minutes.value}
+            onChange={(e) => minutes.onChange(e)}
             name="minutes"
             className={s.timeInput}
             id="minutes"

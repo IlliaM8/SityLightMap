@@ -122,7 +122,7 @@ const Autocomlete = observer(({ isLoaded }) => {
   };
 
   const setTime = (e) => {
-    e.name == "hour" ? setHours(e.value) : setMinutes(e.value);
+    e.name === "hour" ? setHours(e.value) : setMinutes(e.value);
   };
 
   useEffect(() => {
@@ -142,9 +142,8 @@ const Autocomlete = observer(({ isLoaded }) => {
         ready={ready}
         status={status}
         renderSuggestions={renderSuggestions}
-        hours={hours}
-        setTime={setTime}
-        minutes={minutes}
+        hour={hour}
+        minutes={minute}
         validForm={validForm}
       />
     </div>
