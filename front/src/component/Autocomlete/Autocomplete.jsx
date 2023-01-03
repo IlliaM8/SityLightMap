@@ -24,7 +24,6 @@ const Autocomlete = observer(({ isLoaded }) => {
     ready,
     value,
     init,
-
     suggestions: { status, data },
     setValue,
     clearSuggestions,

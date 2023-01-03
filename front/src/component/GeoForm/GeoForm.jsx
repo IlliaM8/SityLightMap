@@ -1,4 +1,5 @@
 import modalState from "../../store/modalState";
+import ErrorMessage from "../UI/ErrorMessage/ErrorMessage";
 import s from "./GeoForm.module.css";
 function GeoForm(props) {
   const {
@@ -32,12 +33,17 @@ function GeoForm(props) {
       )}
 
       <label>Час відключення</label>
-      {hour.isDirty && hour.isEmpty && (
-        <div style={{ color: "red" }}>{minutes.IsError}</div>
-      )}
-      {minutes.isDirty && minutes.isEmpty && (
-        <div style={{ color: "red" }}>{minutes.IsError}</div>
-      )}
+
+      <ErrorMessage
+        errorCheck1={hour.isDirty}
+        errorCheck2={hour.isEmpty}
+        errorText={minutes.IsError}
+      />
+      <ErrorMessage
+        errorCheck1={minutes.isDirty}
+        errorCheck2={minutes.isEmpty}
+        errorText={minutes.IsError}
+      />
       <div className={s.timeBlock}>
         <div>
           <input

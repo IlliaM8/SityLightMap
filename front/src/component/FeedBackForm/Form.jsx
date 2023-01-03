@@ -1,15 +1,16 @@
 import s from "./FeedBackForm.module.css";
 import TextareaAutosize from "react-textarea-autosize";
-import { useFormHandl } from "./useFormHandl";
+import ErrorMessage from "../UI/ErrorMessage/ErrorMessage";
 
 function Form({ name, email, text, handleForm }) {
   return (
     <form action="#" className={s.form}>
       <div className={s.form__title}>Зворотній зв'язок</div>
-      {name.isDirty && name.isEmpty && (
-        <div style={{ color: "red" }}>{name.IsError}</div>
-      )}
-
+      <ErrorMessage
+        errorCheck1={name.isDirty}
+        errorCheck2={name.isEmpty}
+        errorText={name.IsError}
+      />
       <div className={s.form__group}>
         <label className={s.label} htmlFor="name__input">
           Ім'я:
@@ -24,11 +25,11 @@ function Form({ name, email, text, handleForm }) {
           onChange={(e) => name.onChange(e)}
         />
       </div>
-
-      {email.isDirty && email.emailError && (
-        <div style={{ color: "red" }}>{email.IsError}</div>
-      )}
-
+      <ErrorMessage
+        errorCheck1={email.isDirty}
+        errorCheck2={email.emailError}
+        errorText={email.IsError}
+      />
       <div className={s.form__group}>
         <label className={s.label} htmlFor="email__input">
           Пошта:
@@ -43,11 +44,11 @@ function Form({ name, email, text, handleForm }) {
           onChange={(e) => email.onChange(e)}
         />
       </div>
-
-      {text.isDirty && text.isEmpty && (
-        <div style={{ color: "red" }}>{text.IsError}</div>
-      )}
-
+      <ErrorMessage
+        errorCheck1={text.isDirty}
+        errorCheck2={text.isEmpty}
+        errorText={text.IsError}
+      />
       <div className={s.form__group}>
         <label className={s.label} htmlFor="text__input">
           Текст:
@@ -61,7 +62,6 @@ function Form({ name, email, text, handleForm }) {
           onChange={(e) => text.onChange(e)}
         />
       </div>
-
       <button
         disabled={!email.inputValid || !name.inputValid || !text.inputValid}
         className={s.form__submit}
